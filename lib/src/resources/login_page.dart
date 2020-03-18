@@ -59,46 +59,46 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(fontSize: Configs.textSizeSubTitle),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 80),
-                child: Container(
-                  height: 48,
-                  padding: EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(fontSize: Configs.textSize, color: Colors.black),
-                      icon: SvgPicture.asset('images/ic_mail.svg'),
-                      border: InputBorder.none,
+              Container(
+                margin: EdgeInsets.only(top: 50),
+                height: 48,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_mail.svg',
+                        width: 24,
+                      ),
                     ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  height: 48,
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(fontSize: Configs.textSize, color: Colors.black),
-                      icon: SvgPicture.asset('images/ic_lock.svg'),
-                      border: InputBorder.none,
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                height: 48,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_lock.svg',
+                        width: 24,
+                      ),
                     ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                 ),
               ),
@@ -107,7 +107,8 @@ class _LoginPageState extends State<LoginPage> {
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Forgot password?',
-                  style: TextStyle(fontSize: Configs.textSize, color: ICabColors.blue),
+                  style: TextStyle(
+                      fontSize: Configs.textSize, color: ICabColors.blue),
                 ),
               ),
               Padding(
@@ -125,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                       color: ICabColors.blue,
                       child: Text(
                         'Log In',
-                        style: TextStyle(color: Colors.white, fontSize: Configs.textSize),
+                        style: TextStyle(
+                            color: Colors.white, fontSize: Configs.textSizeSubTitle),
                       ),
                     )),
               ),
@@ -135,12 +137,14 @@ class _LoginPageState extends State<LoginPage> {
                 child: RichText(
                   text: TextSpan(
                       text: 'New user? ',
-                      style: TextStyle(color: Colors.black, fontSize: Configs.textSize),
+                      style: TextStyle(
+                          color: Colors.black, fontSize: Configs.textSize),
                       children: <TextSpan>[
                         TextSpan(
                             text: 'Sign up for a new account',
-                            style:
-                                TextStyle(fontSize: Configs.textSize, color: ICabColors.blue),
+                            style: TextStyle(
+                                fontSize: Configs.textSize,
+                                color: ICabColors.blue),
                             recognizer: TapGestureRecognizer()
                               ..onTap = onTapSignUp),
                       ]),

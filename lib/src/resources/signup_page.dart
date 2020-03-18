@@ -5,13 +5,17 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icab/src/blocs/auth_bloc.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
 
+import '../commons/configs.dart';
+import '../commons/configs.dart';
+import '../commons/configs.dart';
+import '../commons/configs.dart';
+
 class SignUpPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   AuthBloc _authBloc = AuthBloc();
 
   TextEditingController _nameController = TextEditingController();
@@ -21,7 +25,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void onClickSignUp() {
     print('click signup');
-    _authBloc.signUp(_nameController.text, _phoneController.text, _emailController.text, _passController.text, () {
+    _authBloc.signUp(_nameController.text, _phoneController.text,
+        _emailController.text, _passController.text, () {
       print('sign up success');
     });
   }
@@ -62,104 +67,98 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Text(
                   'Welcome Aboard!',
-                  style: TextStyle(fontSize: 26),
+                  style: TextStyle(fontSize: Configs.textSizeTitle),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Text(
                   'Sign up with iCab in simple steps',
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: Configs.textSizeSubTitle),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: StreamBuilder(
-                    stream: _authBloc.authStream,
-                    builder: (context, snapshot) {
-                      return TextField(
-                        controller: _nameController,
-                        decoration: InputDecoration(
-                          labelText: 'Name',
-                          errorText: null,
-                          labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-                          icon: SvgPicture.asset('images/ic_user.svg'),
-                          border: InputBorder.none,
-                        ),
-                      );
-                    }
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: TextField(
-                    controller: _phoneController,
-                    decoration: InputDecoration(
-                      labelText: 'Phone number',
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-                      icon: SvgPicture.asset('images/ic_phone.svg'),
-                      border: InputBorder.none,
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                height: 48,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_user.svg',
+                        width: 24,
+                      ),
                     ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-                      icon: SvgPicture.asset('images/ic_mail.svg'),
-                      border: InputBorder.none,
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                height: 48,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Phone number',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_phone.svg',
+                        width: 24,
+                      ),
                     ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25),
-                child: Container(
-                  padding: const EdgeInsets.only(left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    border: Border.all(color: Colors.grey, width: 1),
-                  ),
-                  child: TextField(
-                    obscureText: true,
-                    controller: _passController,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(fontSize: 20, color: Colors.black),
-                      icon: SvgPicture.asset('images/ic_lock.svg'),
-                      border: InputBorder.none,
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                height: 48,
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_mail.svg',
+                        width: 24,
+                      ),
                     ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 25),
+                height: 48,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    labelStyle: TextStyle(
+                        fontSize: Configs.textSize, color: Colors.black),
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.only(left: 12, right: 12),
+                      child: SvgPicture.asset(
+                        'images/ic_lock.svg',
+                        width: 24,
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                        borderSide: const BorderSide(color: Colors.grey),
+                        borderRadius: BorderRadius.all(Radius.circular(5))),
                   ),
                 ),
               ),
@@ -167,7 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 padding: const EdgeInsets.only(top: 40),
                 child: SizedBox(
                     width: double.infinity,
-                    height: 56,
+                    height: 48,
                     child: RaisedButton(
                       onPressed: onClickSignUp,
                       shape: RoundedRectangleBorder(
@@ -178,7 +177,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       color: ICabColors.blue,
                       child: Text(
                         'Sign Up',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: Configs.textSizeSubTitle),
                       ),
                     )),
               ),
@@ -188,12 +189,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: RichText(
                   text: TextSpan(
                       text: 'Already a user? ',
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(
+                          fontSize: Configs.textSize, color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
                             text: 'Log in now',
-                            style:
-                                TextStyle(fontSize: 18, color: ICabColors.blue),
+                            style: TextStyle(
+                                fontSize: Configs.textSize,
+                                color: ICabColors.blue),
                             recognizer: TapGestureRecognizer()
                               ..onTap = onTapLogIn),
                       ]),
