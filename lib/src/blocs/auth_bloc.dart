@@ -11,16 +11,16 @@ class AuthBloc {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseDatabase _database = FirebaseDatabase.instance;
 
-  void signUp(String name, String phoneNumber, String email, String pass, Function success) {
+  void signUp(String name, String phone, String email, String pass, Function success) {
     _auth.createUserWithEmailAndPassword(email: email, password: pass)
-        .then((res) {_createUser(res.user.uid, name, email, success);})
+        .then((res) {_createUser(res.user.uid, name, phone, email, success);})
         .catchError((error) {});
   }
 
   void _createUser(
-      String userId, String displayName, String email, Function success) {
-    var user = {'display_name': displayName, 'email': email};
-    var ref = FirebaseDatabase.instance.reference().child('users');
+      String userId, String name, String phone, String email, Function success) {
+    var user = {'name': name, 'phone': phone, 'email': email};
+    var ref = _database.reference().child('users');
     ref.child(userId).set(user).then((res) => success()).catchError((error) {});
   }
 }
