@@ -6,9 +6,6 @@ import 'package:icab/src/blocs/auth_bloc.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
 
 import '../commons/configs.dart';
-import '../commons/configs.dart';
-import '../commons/configs.dart';
-import '../commons/configs.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -28,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
     _authBloc.signUp(_nameController.text, _phoneController.text,
         _emailController.text, _passController.text, () {
       print('sign up success');
+      Navigator.pushNamed(context, '/');
     });
   }
 
@@ -81,6 +79,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 margin: EdgeInsets.only(top: 25),
                 height: 48,
                 child: TextField(
+                  controller: _nameController,
                   decoration: InputDecoration(
                     labelText: 'Name',
                     labelStyle: TextStyle(
@@ -102,6 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 margin: EdgeInsets.only(top: 25),
                 height: 48,
                 child: TextField(
+                  controller: _phoneController,
                   decoration: InputDecoration(
                     labelText: 'Phone number',
                     labelStyle: TextStyle(
@@ -123,6 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 margin: EdgeInsets.only(top: 25),
                 height: 48,
                 child: TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
@@ -144,6 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 margin: EdgeInsets.only(top: 25),
                 height: 48,
                 child: TextField(
+                  controller: _passController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',

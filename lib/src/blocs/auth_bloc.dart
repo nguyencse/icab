@@ -19,7 +19,7 @@ class AuthBloc {
     }).catchError((error) {});
   }
 
-  _createUser(String userId, String userName, String email, Function success) {
+  void _createUser(String userId, String userName, String email, Function success) {
     var user = {'username': userName, 'email': email};
 
     var ref = FirebaseDatabase.instance.reference().child('users');
