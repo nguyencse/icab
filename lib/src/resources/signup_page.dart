@@ -22,8 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   void onClickSignUp() {
     print('click signup');
-    _authBloc.signUp(_nameController.text, _phoneController.text,
-        _emailController.text, _passController.text, () {
+    _authBloc.signUp(_nameController.text, _phoneController.text, _emailController.text, _passController.text, () {
       print('sign up success');
       Navigator.pushNamed(context, '/');
     });
