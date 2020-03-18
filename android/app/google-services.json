@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "913283502635",
+    "firebase_url": "https://taxiapp-c3d21.firebaseio.com",
+    "project_id": "taxiapp-c3d21",
+    "storage_bucket": "taxiapp-c3d21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913283502635:android:5237a3f2d0c750b48a106e",
+        "android_client_info": {
+          "package_name": "com.nguyencse.icab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913283502635-hh1abftpu7g2er62b3rsho4etl5mcdpq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbWz0cxUGhllFf0K2chkYxZt0OlI3pRUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913283502635-hh1abftpu7g2er62b3rsho4etl5mcdpq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "913283502635-d6fa1vlkikula298278ctnfd46aba7ad.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nguyencse.icab"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
