@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
 import 'package:icab/src/resources/app.dart';
+import 'package:icab/src/resources/pages/map_pages.dart';
 
 import '../../commons/configs.dart';
 
@@ -209,12 +210,11 @@ class _SignUpPageState extends State<SignUpPage> {
         _phoneController.text,
         _emailController.text,
         _passController.text, (uid) {
-      MyApp.of(context).authBlock.createUser(
-          uid,
-          _nameController.text,
-          _phoneController.text,
-          _emailController.text,
-          () => print('user created and added to DB'));
+      MyApp.of(context).authBlock.createUser(uid, _nameController.text,
+          _phoneController.text, _emailController.text);
+      print('user created and added to DB');
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MapPage()));
     }, (err) => print(err));
   }
 

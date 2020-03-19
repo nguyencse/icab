@@ -27,11 +27,10 @@ class AuthBloc {
         .catchError((error) => onError('Sign up error ' + error.code));
   }
 
-  void createUser(String userId, String name, String phone, String email,
-      Function onSuccess) {
+  void createUser(String userId, String name, String phone, String email) async {
     var user = {'name': name, 'phone': phone, 'email': email};
     var ref = _database.reference().child('users');
-    ref.child(userId).set(user).then((res) => onSuccess).catchError((error) {});
+    ref.child(userId).set(user);
   }
 
   Future signOut(Function onSignedOut) async {
