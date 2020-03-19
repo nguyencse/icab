@@ -30,6 +30,9 @@ flutter:
    - images/ic_mail.svg
    - images/ic_phone.svg
    - images/ic_user.svg
+   - images/ic_map_pointer.svg
+   - images/ic_menu.svg
+   - images/ic_notification.svg
 
   fonts:
     - family: Nunito

@@ -6,6 +6,7 @@ import 'package:icab/src/commons/configs.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
 import 'package:icab/src/resources/app.dart';
 import 'package:icab/src/resources/pages/home_page.dart';
+import 'package:icab/src/resources/pages/map_page.dart';
 import 'package:icab/src/resources/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -170,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
       _passController.text,
       (user) {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+            context, MaterialPageRoute(builder: (context) => MapPage()));
       },
       (err) => print(err),
     );

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
 import 'package:icab/src/resources/app.dart';
-import 'package:icab/src/resources/pages/map_pages.dart';
+import 'package:icab/src/resources/pages/map_page.dart';
 
 import '../../commons/configs.dart';
 
