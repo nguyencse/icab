@@ -1,24 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:icab/src/blocs/auth_bloc.dart';
 import 'package:icab/src/commons/configs.dart';
-import 'package:icab/src/resources/home_page.dart';
-import 'package:icab/src/resources/login_page.dart';
-import 'package:icab/src/resources/signup_page.dart';
+import 'package:icab/src/resources/app.dart';
+import 'package:icab/src/resources/pages/login_page.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp(
+    AuthBloc(),
+    MaterialApp(
       theme: ThemeData(fontFamily: Configs.fontFamily),
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/login',
-      routes: {
-        '/': (context) => HomePage(),
-        '/login': (context) => LoginPage(),
-        '/signup': (context) => SignUpPage(),
-      },
-    );
-  }
+      home: LoginPage(),
+    ),
+  ));
 }

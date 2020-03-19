@@ -11,16 +11,30 @@ class AuthBloc {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseDatabase _database = FirebaseDatabase.instance;
 
-  void signUp(String name, String phone, String email, String pass, Function success) {
-    _auth.createUserWithEmailAndPassword(email: email, password: pass)
-        .then((res) {_createUser(res.user.uid, name, phone, email, success);})
-        .catchError((error) {});
+  void signIn(String email, String pass, Function(FirebaseUser) onSuccess,
+      Function(String) onError) {
+    _auth
+        .signInWithEmailAndPassword(email: email, password: pass)
+        .then((res) => onSuccess(res.user))
+        .catchError((error) => onError(error));
   }
 
-  void _createUser(
-      String userId, String name, String phone, String email, Function success) {
+  void signUp(String name, String phone, String email, String pass,
+      Function(String) onSuccess, Function(String) onError) {
+    _auth
+        .createUserWithEmailAndPassword(email: email, password: pass)
+        .then((res) => onSuccess(res.user.uid))
+        .catchError((error) => onError('Sign up error ' + error.code));
+  }
+
+  void createUser(String userId, String name, String phone, String email,
+      Function onSuccess) {
     var user = {'name': name, 'phone': phone, 'email': email};
     var ref = _database.reference().child('users');
-    ref.child(userId).set(user).then((res) => success()).catchError((error) {});
+    ref.child(userId).set(user).then((res) => onSuccess).catchError((error) {});
+  }
+
+  void dispose() {
+    _authStreamController.close();
   }
 }

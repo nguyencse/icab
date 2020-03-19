@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:icab/src/commons/configs.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
+import 'package:icab/src/resources/app.dart';
+import 'package:icab/src/resources/pages/home_page.dart';
+import 'package:icab/src/resources/pages/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,14 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void onClickLogin() {
-    print('click login');
-  }
-
-  void onTapSignUp() {
-    print('tap signup');
-    Navigator.pushNamed(context, '/signup');
-  }
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.only(top: 50),
                 height: 48,
                 child: TextField(
+                  controller: _emailController,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
@@ -84,6 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                 margin: EdgeInsets.only(top: 25),
                 height: 48,
                 child: TextField(
+                  controller: _passController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: 'Password',
@@ -127,7 +126,8 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         'Log In',
                         style: TextStyle(
-                            color: Colors.white, fontSize: Configs.textSizeSubTitle),
+                            color: Colors.white,
+                            fontSize: Configs.textSizeSubTitle),
                       ),
                     )),
               ),
@@ -155,5 +155,30 @@ class _LoginPageState extends State<LoginPage> {
         ),
       )),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    MyApp.of(context).authBlock.dispose();
+  }
+
+  void onClickLogin() {
+    print('click login');
+    MyApp.of(context).authBlock.signIn(
+      _emailController.text,
+      _passController.text,
+      (user) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePage()));
+      },
+      (err) => print(err),
+    );
+  }
+
+  void onTapSignUp() {
+    print('tap signup');
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SignUpPage()));
   }
 }

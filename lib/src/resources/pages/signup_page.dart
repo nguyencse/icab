@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:icab/src/blocs/auth_bloc.dart';
 import 'package:icab/src/commons/res/icab_colors.dart';
+import 'package:icab/src/resources/app.dart';
 
-import '../commons/configs.dart';
+import '../../commons/configs.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,25 +13,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  AuthBloc _authBloc = AuthBloc();
-
   TextEditingController _nameController = TextEditingController();
   TextEditingController _phoneController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passController = TextEditingController();
-
-  void onClickSignUp() {
-    print('click signup');
-    _authBloc.signUp(_nameController.text, _phoneController.text, _emailController.text, _passController.text, () {
-      print('sign up success');
-      Navigator.pushNamed(context, '/');
-    });
-  }
-
-  void onTapLogIn() {
-    print('tap login');
-    Navigator.pop(context);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -208,5 +193,33 @@ class _SignUpPageState extends State<SignUpPage> {
         ),
       )),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    MyApp.of(context).authBlock.dispose();
+  }
+
+  void onClickSignUp() {
+    print('click signup');
+
+    MyApp.of(context).authBlock.signUp(
+        _nameController.text,
+        _phoneController.text,
+        _emailController.text,
+        _passController.text, (uid) {
+      MyApp.of(context).authBlock.createUser(
+          uid,
+          _nameController.text,
+          _phoneController.text,
+          _emailController.text,
+          () => print('user created and added to DB'));
+    }, (err) => print(err));
+  }
+
+  void onTapLogIn() {
+    print('tap login');
+    Navigator.pop(context);
   }
 }
