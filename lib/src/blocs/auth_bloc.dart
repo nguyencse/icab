@@ -34,6 +34,11 @@ class AuthBloc {
     ref.child(userId).set(user).then((res) => onSuccess).catchError((error) {});
   }
 
+  Future signOut(Function onSignedOut) async {
+    await _auth.signOut();
+    onSignedOut();
+  }
+
   void dispose() {
     _authStreamController.close();
   }
