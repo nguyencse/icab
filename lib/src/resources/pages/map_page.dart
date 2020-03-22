@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:icab/src/commons/configs.dart';
-import 'package:icab/src/commons/res/icab_colors.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:icab/src/resources/widgets/ride_picker.dart';
+import 'package:icab/src/resources/widgets/ride_picker_2.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -17,12 +19,29 @@ class _MapPageState extends State<MapPage> {
     zoom: 14.4746,
   );
 
+  GoogleMapController mapController;
+  String _mapStyle;
+
+  @override
+  void initState() {
+    rootBundle
+        .loadString('assets/map_style.txt')
+        .then((data) => _mapStyle = data);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          GoogleMap(initialCameraPosition: _initCameraPos),
+          GoogleMap(
+            initialCameraPosition: _initCameraPos,
+            onMapCreated: (controller){
+              mapController = controller;
+              mapController.setMapStyle(_mapStyle);
+            },
+          ),
           Positioned(
               left: 0,
               right: 0,
@@ -55,50 +74,7 @@ class _MapPageState extends State<MapPage> {
                       ),
                     ],
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4),
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey,
-                            offset: Offset(0, 3),
-                            blurRadius: 4
-                          ),
-                        ]),
-                    width: double.infinity,
-                    height: 50,
-                    margin: EdgeInsets.only(left: 16, right: 16),
-                    child: FlatButton(
-                      onPressed: () {},
-                      child: Stack(
-                        alignment: Alignment.centerLeft,
-                        children: <Widget>[
-                          Positioned(
-                            left: 0,
-                            child: SvgPicture.asset(
-                              'images/ic_map_pointer.svg',
-                              width: 14,
-                            ),
-                          ),
-                          Positioned(
-                            left: 20,
-                            right: 16,
-                            child: Text(
-                              '147 Đinh Bộ Lĩnh, phường 26, quận Bình Thạnh, TP.HCM',
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                color: ICabColors.grey,
-                                fontSize: Configs.textSizeHint,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+                  RidePicker2(),
                 ],
               )),
         ],

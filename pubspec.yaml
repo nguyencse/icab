@@ -24,6 +24,7 @@ flutter:
   uses-material-design: true
 
   assets:
+   - assets/map_style.txt
    - images/car_green.svg
    - images/car_red.svg
    - images/ic_lock.svg
@@ -33,6 +34,9 @@ flutter:
    - images/ic_map_pointer.svg
    - images/ic_menu.svg
    - images/ic_notification.svg
+   - images/ic_x.svg
+   - images/ic_navigation.svg
+   - images/ic_line_vertical.svg
 
   fonts:
     - family: Nunito
